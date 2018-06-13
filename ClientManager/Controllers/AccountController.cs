@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using ClientManager.Models;
 using ClientManager.Models.AccountViewModels;
 using ClientManager.Services;
+using ClientManager.Domain;
 
 namespace ClientManager.Controllers
 {
