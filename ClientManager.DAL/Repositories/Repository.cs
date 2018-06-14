@@ -15,7 +15,7 @@ namespace ClientManager.DAL.Repositories
             _context = context;
             _dbset = _context.Set<TEntity>();
         }
-        public void Delete(int id)
+        public void Delete(long id)
         {
             var entityToDelete = _dbset.Find(id);
             Delete(entityToDelete);
@@ -37,7 +37,7 @@ namespace ClientManager.DAL.Repositories
             return _dbset;
         }
 
-        public TEntity GetById(int id)
+        public TEntity GetById(long id)
         {
             return _dbset.Find(id);
         }

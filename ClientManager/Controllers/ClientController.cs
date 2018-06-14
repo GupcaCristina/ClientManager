@@ -63,19 +63,23 @@ namespace ClientManager.Web.Controllers
         }
 
         // GET: Client/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
-            return View();
+            var clientDto = _clientServices.GetClientDetails(id);
+            var clientViewModel = _mapper.Map<ClientDetailsViewModel>(clientDto);
+
+            return View(clientViewModel);
         }
 
         // POST: Client/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, ClientDetailsViewModel clientViewModel)
         {
             try
             {
-                // TODO: Add update logic here
+                var client = _mapper.Map<ClientDTO>(clientViewModel);
+                _clientServices.EditClient(client);
 
                 return RedirectToAction(nameof(Index));
             }

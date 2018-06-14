@@ -49,12 +49,37 @@ namespace ClientManager.BLL.Services
                 }
             };
            _repository.Add(client);
+           _repository.SaveChanges();
+        }
+
+        public void EditClient(ClientDTO clientDto)
+        {
+            var client = new Client()
+            {
+                Id = clientDto.Id,
+                BirthDate = clientDto.BirthDate,
+                AddedDate = DateTime.Now,
+                FirstName = clientDto.FirstName,
+                LastName = clientDto.LastName,
+                
+
+            };
+            _repository.Update(client);
             _repository.SaveChanges();
         }
 
         public ClientDTO GetClientDetails(long id)
         {
-            throw new NotImplementedException();
+            var client = _repository.GetById(id);
+            var clientDto = _mapper.Map<ClientDTO>(client);
+
+            var numberOfEventsBooked = _eventRepository.GetEventsByClient(id).ToList() ?? new List<Event>(); 
+
+            clientDto.NumberOfEventsBooked = numberOfEventsBooked.Count()==0 ? 0 : numberOfEventsBooked.Count();
+
+
+            return clientDto;
+
         }
 
         public PaginatedList<ClientDTO> GetPaginatedList(int pageSize, DateTime? addedDate, string searchString, int page = 0)
@@ -72,7 +97,9 @@ namespace ClientManager.BLL.Services
             var paginatedListOfClients = new PaginatedList<ClientDTO>(clientsDTO, clientsDTO.Count, page, pageSize);
             foreach (var item in paginatedListOfClients)
             {
-                item.NumberOfEventsBooked = _eventRepository.GetEventsByClient(item.Id).Count();
+                var numberOfEventsBooked = _eventRepository.GetEventsByClient(item.Id).ToList() ?? new List<Event>();
+
+                item.NumberOfEventsBooked = numberOfEventsBooked.Count() == 0 ? 0 : numberOfEventsBooked.Count();
             }
 
             return paginatedListOfClients;

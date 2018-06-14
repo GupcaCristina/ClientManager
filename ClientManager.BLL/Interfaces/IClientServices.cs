@@ -11,5 +11,7 @@ namespace ClientManager.BLL.Interfaces
         ClientDTO GetClientDetails(long id);
         PaginatedList<ClientDTO> GetPaginatedList(int pageSize, DateTime? addedDate,string searchString, int page);
         void AddClient(CreateClientDTO client);
+        void EditClient(ClientDTO client);
+
     }
 }
