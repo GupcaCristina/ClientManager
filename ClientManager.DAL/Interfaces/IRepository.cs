@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace LearningPortal.DAL.Interfaces
+namespace ClientManager.DAL.Interfaces
 {   
     public interface IRepository<TEntity> where TEntity : class
     {

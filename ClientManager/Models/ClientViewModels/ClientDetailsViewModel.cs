@@ -15,6 +15,5 @@ namespace ClientManager.Web.Models.ClientViewModels
         public DateTime AddedDate { get; set; }
         public int NumberOfEventsBooked { get; set; }
         public ContactDetailsViewModel Contacts { get; set; }
-
     }
 }

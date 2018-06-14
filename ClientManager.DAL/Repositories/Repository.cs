@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using LearningPortal.DAL.Interfaces;
+using ClientManager.DAL.Interfaces;
 
 namespace ClientManager.DAL.Repositories
 {

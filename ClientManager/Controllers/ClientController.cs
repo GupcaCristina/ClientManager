@@ -34,9 +34,11 @@ namespace ClientManager.Web.Controllers
         }
 
         // GET: Client/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(long id)
         {
-            return View();
+            var client = _clientServices.GetClientDetails(id);
+            var clientViewModel = _mapper.Map<ClientDetailsViewModel>(client);
+            return View(clientViewModel);
         }
 
         // GET: Client/Create

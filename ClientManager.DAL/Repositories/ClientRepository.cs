@@ -29,5 +29,11 @@ namespace ClientManager.DAL.Repositories
             var clients = Get();
             return clients;
         }
+
+        public Client GetClientDetails(long id)
+        {
+            var client = Get().Where(p=>p.Id==id).Include(s=>s.Contacts).FirstOrDefault();
+            return client;
+        }
     }
 }

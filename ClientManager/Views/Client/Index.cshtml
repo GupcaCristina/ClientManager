@@ -10,25 +10,25 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
+<table class="table table-bordered table-hover table-dark">
+    <thead >
+        <tr class="bg-primary">
+            <th scope="col">
                 @Html.DisplayName("Id")
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayName("FirstName")
-            </th>
-            <th>
+            </th >
+            <th scope="col">
                 @Html.DisplayName("LastName")
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayName("BirthDate")
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayName("NumberOfEventsBooked")
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayName("AddedDate")
             </th>
             <th></th>
@@ -38,7 +38,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td >
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
@@ -48,7 +48,7 @@
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
+                    @Html.DisplayFor(modelItem => item.BirthDate.Date)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NumberOfEventsBooked)
@@ -58,8 +58,8 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.Id}) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }

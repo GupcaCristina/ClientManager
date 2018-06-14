@@ -10,6 +10,7 @@ namespace ClientManager.DAL.Interfaces
     {
         IQueryable<Client> GetClientList();
         Client GetClientById(long id);
+        Client GetClientDetails(long id);
 
     }
 }

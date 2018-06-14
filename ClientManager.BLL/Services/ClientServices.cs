@@ -70,7 +70,7 @@ namespace ClientManager.BLL.Services
 
         public ClientDTO GetClientDetails(long id)
         {
-            var client = _repository.GetById(id);
+            var client = _clientRepository.GetClientDetails(id);
             var clientDto = _mapper.Map<ClientDTO>(client);
 
             var numberOfEventsBooked = _eventRepository.GetEventsByClient(id).ToList() ?? new List<Event>(); 
@@ -79,6 +79,14 @@ namespace ClientManager.BLL.Services
 
 
             return clientDto;
+
+        }
+
+        public List<ClientDTO> GetClientsByBirthday()
+        {
+            var clients = _repository.Get().Where(p => p.BirthDate.Date == DateTime.Now.Date).ToList();
+            var clientsDto = _mapper.Map<List<ClientDTO>>(clients);
+            return clientsDto;
 
         }
 
