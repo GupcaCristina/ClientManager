@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using ClientManager.BLL.Interfaces;
+using ClientManager.Web.Models.ClientViewModels;
+using ClientManager.Web.Models.Event;
+using DomainUtil;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +15,23 @@ namespace ClientManager.Web.Controllers
     public class EventController : Controller
     {
         // GET: Event
-        public ActionResult Index()
+        private IEventServices _eventServices;
+        private IMapper _mapper;
+        public EventController(IEventServices clientServices, IMapper mapper)
         {
-            return View();
+            _eventServices = clientServices;
+            _mapper = mapper;
+        }
+        // GET: Client
+        public ActionResult Index(int page, DateTime? addedDate)
+        {
+            var pageSize = 10;
+            var events = _eventServices.GetPaginatedList(pageSize, addedDate, page);
+            var clientsViewModel = _mapper.Map<PaginatedList<EventViewModel>>(events);
+            clientsViewModel.PageIndex = events.PageIndex;
+            clientsViewModel.TotalPages = events.TotalPages;
+
+            return View(clientsViewModel);
         }
 
         // GET: Event/Details/5

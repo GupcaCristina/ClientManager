@@ -6,5 +6,6 @@ namespace ClientManager.DAL.Interfaces
     public interface IEventRepository
     {
         IQueryable<Event> GetEventsByClient(long id);
+        IQueryable<Event> GetEventList();
     }
 }

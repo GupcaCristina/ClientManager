@@ -11,8 +11,6 @@ namespace ClientManager.Domain
         public DateTime Date { get; set; }
         public EventType EventType { get; set; }
         public Client Client { get; set; }
-
         public Address Address { get; set; }
-
     }
 }

@@ -45,6 +45,7 @@ namespace ClientManager
             services.AddScoped<DbContext,ClientManagerContext>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IClientServices, ClientServices>();
+            services.AddTransient<IEventServices, EventServices>();
             services.AddScoped<IClientRepository,ClientRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

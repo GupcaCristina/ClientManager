@@ -28,8 +28,4 @@
     <ProjectReference Include="..\ClientManager.DTO\ClientManager.DTO.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Event\" />
-  </ItemGroup>
-
 </Project>
