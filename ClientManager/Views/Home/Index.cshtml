@@ -12,9 +12,6 @@
             <thead >
             <tr class="bg-primary">
                 <th scope="col">
-                    @Html.DisplayName("Id")
-                </th>
-                <th scope="col">
                     @Html.DisplayName("FirstName")
                 </th >
                 <th scope="col">
@@ -36,9 +33,6 @@
             @foreach (var item in ViewData["clientsViewModel"] as List<ClientDetailsViewModel>)
             {
                 <tr>
-                    <td >
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.FirstName)
                     </td>

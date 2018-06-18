@@ -7,78 +7,89 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfEventsBooked)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfEventsBooked)
-        </dd>
+    <div class="row">
+        <div class="col-md-6">
+            <details open>
+            <summary class="text-uppercase"> Personal  Information</summary>
+            <dl class="dl-horizontal">
 
-        <hr/>
-        <h3>Contact Details</h3>
-        <dt>
-            @Html.DisplayNameFor(model => model.Contacts.Phone1)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Contacts.Phone1)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Contacts.Phone2)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Contacts.Phone2)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Contacts.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Contacts.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Contacts.Website)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Contacts.Website)
-        </dd>        
-        <dt>
-            @Html.DisplayNameFor(model => model.Contacts.Facebook)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Contacts.Facebook)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Contacts.Instagram)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Contacts.Instagram)
-        </dd>       
-    </dl>
-</div>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BirthDate)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NumberOfEventsBooked)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NumberOfEventsBooked)
+                </dd>
+            </dl>
+            <hr/>
+            </details>
+
+        </div>
+        <div class="col-md-6">
+
+            <details>
+                <summary> Contact Details</summary>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Contacts.Phone1)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Contacts.Phone1)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Contacts.Phone2)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Contacts.Phone2)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Contacts.Email)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Contacts.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Contacts.Website)
+                    </dt>
+                    <dd>
+                        <a href="http://{@Model.Contacts.Website.ToString()}/">@Model.Contacts.Website</a>
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Contacts.Facebook)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Contacts.Facebook)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Contacts.Instagram)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Contacts.Instagram)
+                    </dd>
+                </dl>
+            </details>
+
+            </div>
+
+        </div>
+    </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     <a asp-action="Index">Back to List</a>
