@@ -28,14 +28,26 @@ namespace ClientManager.BLL.Services
             _mapper = mapper;
         }
 
-        public void EditClient(EventDTO client)
+        public void EditEvent(EventDTO client)
         {
             throw new NotImplementedException();
         }
 
-        public EventDTO GetClientDetails(long id)
+        public EventDTO GetEventDetails(long id)
         {
             throw new NotImplementedException();
+        }
+
+        public List<EventDTO> GetEventsByClient(long id)
+        {
+            var events = _eventRepository.GetEventsByClient(id).ToList();
+            var eventsDto = _mapper.Map<List<EventDTO>>(events);
+            for (int i = 0; i < eventsDto.Count(); i++)
+            {
+                eventsDto[i].EventType = events[i].EventType.Type;
+
+            }
+            return eventsDto;
         }
 
         public PaginatedList<EventDTO> GetPaginatedList(int pageSize, DateTime? date,int page = 0)

@@ -25,7 +25,9 @@ namespace ClientManager.DAL.Repositories
 
         public IQueryable<Event> GetEventsByClient(long id)
         {
-            var events = Get().Where(p => p.Client.Id == id);
+            var events = Get()
+                            .Include(m => m.EventType)
+                            .Where(p => p.Client.Id == id);
             return events;
         }
     }

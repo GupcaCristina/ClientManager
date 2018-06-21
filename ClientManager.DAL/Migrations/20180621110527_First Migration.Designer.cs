@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClientManager.DAL.Migrations
 {
     [DbContext(typeof(ClientManagerContext))]
-    [Migration("20180613135149_FirstMigration")]
+    [Migration("20180621110527_First Migration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -165,6 +165,8 @@ namespace ClientManager.DAL.Migrations
                     b.Property<DateTime>("Date");
 
                     b.Property<long?>("EventTypeId");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<double>("Price");
 

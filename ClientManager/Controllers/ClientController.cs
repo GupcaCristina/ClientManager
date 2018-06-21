@@ -6,6 +6,7 @@ using AutoMapper;
 using ClientManager.BLL.Interfaces;
 using ClientManager.DTO;
 using ClientManager.Web.Models.ClientViewModels;
+using ClientManager.Web.Models.Event;
 using DomainUtil;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,15 @@ namespace ClientManager.Web.Controllers
     public class ClientController : Controller
     {
         private IClientServices _clientServices;
+        private IEventServices _eventServices;
+
         private IMapper _mapper;
-        public ClientController(IClientServices clientServices, IMapper mapper)
+        public ClientController(IClientServices clientServices, 
+                                IEventServices eventServices,
+                                IMapper mapper)
         {
             _clientServices = clientServices;
+            _eventServices = eventServices;
             _mapper = mapper;
         }
         // GET: Client
@@ -37,7 +43,10 @@ namespace ClientManager.Web.Controllers
         public ActionResult Details(long id)
         {
             var client = _clientServices.GetClientDetails(id);
+            var eventsByClient = _eventServices.GetEventsByClient(id);
+
             var clientViewModel = _mapper.Map<ClientDetailsViewModel>(client);
+            ViewData["events"] = _mapper.Map<List<EventViewModel>>(eventsByClient);
             return View(clientViewModel);
         }
 

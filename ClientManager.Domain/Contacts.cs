@@ -14,11 +14,8 @@ namespace ClientManager.Domain
         public string Facebook { get; set; }
         public string Instagram { get; set; }
 
-
         [ForeignKey("Client")]
         public long ClientId { get; set; }
         public Client Client { get; set; }
-
-
     }
 }

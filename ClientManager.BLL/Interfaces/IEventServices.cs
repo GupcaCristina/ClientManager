@@ -8,9 +8,10 @@ namespace ClientManager.BLL.Interfaces
 {
     public interface IEventServices
     {
-        EventDTO GetClientDetails(long id);
+        EventDTO GetEventDetails(long id);
         PaginatedList<EventDTO> GetPaginatedList(int pageSize, DateTime? addedDate,  int page);
        // void AddClient(CreateClientDTO client);
-        void EditClient(EventDTO client);
+        void EditEvent(EventDTO client);
+        List<EventDTO> GetEventsByClient(long id);
     }
 }

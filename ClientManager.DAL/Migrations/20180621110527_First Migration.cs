@@ -219,7 +219,8 @@ namespace ClientManager.DAL.Migrations
                     Price = table.Column<double>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     EventTypeId = table.Column<long>(nullable: true),
-                    ClientId = table.Column<long>(nullable: true)
+                    ClientId = table.Column<long>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

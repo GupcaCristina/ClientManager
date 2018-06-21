@@ -1,96 +1,142 @@
-﻿@model ClientManager.Web.Models.ClientViewModels.ClientDetailsViewModel
+﻿@using ClientManager.Web.Models.Event
+@model ClientManager.Web.Models.ClientViewModels.ClientDetailsViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
-<h2>Details</h2>
+
+
+<style>
+
+    .marginLeft {
+        margin-left: 5px;
+    }
+</style>
+
 
 <div>
     <hr />
+
     <div class="row">
-        <div class="col-md-6">
-            <details open>
-            <summary class="text-uppercase"> Personal  Information</summary>
-            <dl class="dl-horizontal">
+        <div class="col-md-3">
+            <section>
+                <img src="~/images/img_avatar.png" style="width: 200px; height: 200px;  border-radius: 50%; margin-left: auto; margin-right: auto" />
+            </section>
+            <div class="row" style="margin-left: auto; margin-right: auto">
+                <br />
+                <div class="col-md-2">
+                    <a href="#"><img src="~/images/facebook.png" /></a>
+                </div>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.FirstName)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.LastName)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.BirthDate)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.BirthDate)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.NumberOfEventsBooked)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.NumberOfEventsBooked)
-                </dd>
-            </dl>
-            <hr/>
-            </details>
+                <div class="col-md-2 marginLeft">
+                    <a href="#"> <img src="~/images/email.png" /></a>
+                </div>
+                <div class="col-md-2  marginLeft">
+                    <a href="#"><img src="~/images/instagram.png" /></a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#"><img src="~/images/odnoklassniki.png" /></a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#"><img src="~/images/linkedin (1).png" /></a>
 
-        </div>
-        <div class="col-md-6">
-
-            <details>
-                <summary> Contact Details</summary>
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Contacts.Phone1)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Contacts.Phone1)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Contacts.Phone2)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Contacts.Phone2)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Contacts.Email)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Contacts.Email)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Contacts.Website)
-                    </dt>
-                    <dd>
-                        <a href="http://{@Model.Contacts.Website.ToString()}/">@Model.Contacts.Website</a>
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Contacts.Facebook)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Contacts.Facebook)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Contacts.Instagram)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Contacts.Instagram)
-                    </dd>
-                </dl>
-            </details>
-
+                </div>
             </div>
+            <br />
+            <div style="text-align: center">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <section>
+                Personal Information
+                <hr />
+                <label> Name :</label>
+                @Html.DisplayFor(model => model.FirstName)
+                @Html.DisplayFor(model => model.LastName)
+                <br />
+                <label>  @Html.DisplayNameFor(model => model.BirthDate) :</label>
+                @Html.DisplayFor(model => model.BirthDate)
+                <br />
+                <hr />
+                <label>Phone 1:</label>
+                @Html.DisplayFor(model => model.Contacts.Phone1)
+                <br />
+
+                <label>Phone 2:</label>
+                @Html.DisplayFor(model => model.Contacts.Phone2)
+                <br />
+                <label>Email:</label>
+                @Html.DisplayFor(model => model.Contacts.Email)
+                <br />
+                <label>Website:</label>
+                @Html.DisplayFor(model => model.Contacts.Website)
+                <br />
+            </section>
 
         </div>
+        <div class="col-md-3">
+            <section>
+                Number of Events Booked:
+                <hr />
+                <h1 style="text-align: center; color: royalblue">
+                    @Html.DisplayFor(model => model.NumberOfEventsBooked)
+                </h1>
+            </section>
+            <br />
+        </div>       
+        <hr />
     </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+    <br/>
+
+    <div class="row">
+
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr class="bg-primary">
+                <th>
+                    Date
+                </th>
+                <th>
+                    EventType
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in ViewData["events"] as List<EventViewModel>)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+                        @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    
+
 </div>
+
+
+

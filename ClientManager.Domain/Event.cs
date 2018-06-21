@@ -12,5 +12,7 @@ namespace ClientManager.Domain
         public EventType EventType { get; set; }
         public Client Client { get; set; }
         public Address Address { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

@@ -164,6 +164,8 @@ namespace ClientManager.DAL.Migrations
 
                     b.Property<long?>("EventTypeId");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<double>("Price");
 
                     b.HasKey("Id");

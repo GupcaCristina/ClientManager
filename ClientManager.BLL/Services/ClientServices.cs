@@ -60,9 +60,7 @@ namespace ClientManager.BLL.Services
                 BirthDate = clientDto.BirthDate,
                 AddedDate = DateTime.Now,
                 FirstName = clientDto.FirstName,
-                LastName = clientDto.LastName,
-                
-
+                LastName = clientDto.LastName,               
             };
             _repository.Update(client);
             _repository.SaveChanges();

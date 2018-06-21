@@ -14,6 +14,5 @@ namespace ClientManager.Domain
 
         public List<Event> Events { get; set; } = new List<Event>();
         public Contacts Contacts { get; set; }
-
     }
 }
