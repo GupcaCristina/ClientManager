@@ -12,7 +12,19 @@
         margin-left: 5px;
     }
 </style>
+<script>
 
+    function ShowContactDiv() {
+        var x = document.getElementById("contactdiv");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+
+    }
+
+</script>     
 
 <div>
     <hr />
@@ -29,7 +41,10 @@
                 </div>
 
                 <div class="col-md-2 marginLeft">
-                    <a href="#"> <img src="~/images/email.png" /></a>
+
+             
+
+                    <a href="#" onclick="ShowContactDiv()"> <img src="~/images/email.png" onclick="ShowContactDiv" /></a>
                 </div>
                 <div class="col-md-2  marginLeft">
                     <a href="#"><img src="~/images/instagram.png" /></a>
@@ -64,7 +79,6 @@
                 <label>Phone 1:</label>
                 @Html.DisplayFor(model => model.Contacts.Phone1)
                 <br />
-
                 <label>Phone 2:</label>
                 @Html.DisplayFor(model => model.Contacts.Phone2)
                 <br />
@@ -91,7 +105,71 @@
     </div>
     <br/>
 
-    <div class="row">
+    
+    <div class="row" style="display: none" id="contactdiv">
+     
+        <form id="messageForm"  >
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="email">Send To</label>
+                    <input type="email" name="to" value="@Model.Contacts.Email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Subject</label>
+                    <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="body">Message</label>
+                    <textarea  name="body" id="body" class="form-control"></textarea>
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary" >Send message</button>
+            <br />
+            <br />
+
+        </form>
+
+        </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+        <script src="~/lib/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
+        <script>
+
+            $(function() {
+                $("#messageForm").submit(function() {
+
+                    var to = $("#email").val();
+                    var subject = $("#subject").val();
+                    var body = $("#body").val();
+
+                    $.ajax({
+                        url: " http://localhost:12103/Contacts/SendMessage",
+                        type: "GET",
+                        data: { to: to, subject: subject, body: body },
+
+                       
+                    });
+
+                });
+            });
+
+        </script>
+        
+        
+
+
+    </div>
+    
+
+        <div class="row">
 
         <table class="table table-hover table-dark">
             <thead>
